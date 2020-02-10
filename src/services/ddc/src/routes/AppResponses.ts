@@ -8,7 +8,7 @@ export default class StatusEnumResponse {
         } catch (e) {
             console.error(appResponse);
         }
-        if (!appResponse.appStatus && (appResponse instanceof AppResponse) === false) {
+        if (!appResponse.appStatus && !(appResponse instanceof AppResponse)) {
             let resp = new AppResponse();
             resp.appStatus = AppStatus.UnknownError;
 
@@ -41,9 +41,9 @@ export default class StatusEnumResponse {
                 res.status(200);
                 break;
             default:
-                appResponse = new AppResponse();
-                appResponse.appStatus = AppStatus.Error;
-                appResponse.innerError = appResponse;
+                const _appResponse = new AppResponse();
+                _appResponse.appStatus = AppStatus.Error;
+                _appResponse.innerError = appResponse;
                 res.status(500);
                 break;
         }

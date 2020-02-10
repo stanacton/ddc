@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": \"5e40abb2459534494e0bedfc\",\n\t\"Name\": \"Cherries\"\n}",
+					"raw": "{\n\t\"Name\": \"Cherries\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -7,6 +7,9 @@ import {CoOpSvc, CropsSvc, OrderSvc, ParticipantSvc} from "./services";
 import {RepoFactory} from "./mongo";
 import {MongoConfig} from "./mongo/RepoFactory";
 import config from 'config';
+import CoOpRouter from "./routes/CoOpRouter";
+import CropsRouter from "./routes/CropsRouter";
+import ParticipantRouter from "./routes/ParticipantRouter";
 
 class App  {
     public app: express.Application;
@@ -25,10 +28,10 @@ class App  {
 
         const services = await this.services();
 
-        app.use('/api/co-ops', OrderRouter.router(services.coOpSvc));
-        app.use('/api/crops', OrderRouter.router(services.cropsSvc));
+        app.use('/api/co-ops', CoOpRouter.router(services.coOpSvc));
+        app.use('/api/crops', CropsRouter.router(services.cropsSvc));
         app.use('/api/orders', OrderRouter.router(services.orderSvc));
-        app.use('/api/participants', OrderRouter.router(services.participantSvc));
+        app.use('/api/participants', ParticipantRouter.router(services.participantSvc));
     }
 
     static async services() {

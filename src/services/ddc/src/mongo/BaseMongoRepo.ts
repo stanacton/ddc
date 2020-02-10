@@ -12,9 +12,13 @@ export abstract class BaseMongoRepo<T> implements Repo<T> {
     abstract toType(doc: any): T;
 
     async create(item: T): Promise<T> {
+        const check: any = item;
+        if (check.id) {
+            throw new AppResponse(AppStatus.Error, "Can't call create when object has and id");
+        }
+
         const doc = new this.model(item);
         await doc.save();
-
         return this.toType(doc);
     }
 
