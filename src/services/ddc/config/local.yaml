@@ -1,4 +1,0 @@
-MongoConfig:
-  connectionString: mongodb://localhost:27017/test
-  maxRetries: 10
-  retryInterval: 2000
