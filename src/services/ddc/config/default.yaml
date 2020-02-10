@@ -1,0 +1,4 @@
+MongoConfig:
+  connectionString:
+  maxRetries: 10
+  retryInterval: 2000

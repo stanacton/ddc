@@ -1,0 +1,4 @@
+MongoConfig:
+  connectionString: MONGOCONFIG_CONNECTIONSTRING
+  maxRetries: MONGOCONFIG_MAXRETRIES
+  retryInterval: MONGOCONFIG_RETRYINTERVAL
