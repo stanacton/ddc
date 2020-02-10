@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "e39ba9b3-ea4e-42f9-ba16-c8e035069516",
+		"name": "DynamicDigitalCoops",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crops Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d75d06a-6859-4651-81e1-91018aa9510a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"5e40abb2459534494e0bedfc\",\n\t\"Name\": \"Cherries\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/crops",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"crops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crops List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34994fde-8f00-41d0-affd-0ce2838be8f9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/crops",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"crops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crops Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38c2b6f7-8b06-4a8c-9a95-bc72fd65a6b8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.appStatus).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/crops/5e40abb2459534494e0bedfc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"crops",
+						"5e40abb2459534494e0bedfc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crops Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a6dd728-43d6-4761-8d6d-a565e3bb047b",
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,404]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/crops/5e40abb2459534494e0bedfc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"crops",
+						"5e40abb2459534494e0bedfc"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,9 +1,10 @@
 import {BaseMongoRepo} from "./BaseMongoRepo";
 import {model, Schema} from "mongoose";
 import {Crop} from "../models";
+import {ObjectId} from "bson";
 
 export const CropsSchema = new Schema({
-    id: {type: String, auto: true },
+    id: {type: String, default: function() { return new ObjectId() } },
 }, { strict: false});
 const MongoCrops = model('Crops', CropsSchema);
 

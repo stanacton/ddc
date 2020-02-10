@@ -19,11 +19,11 @@ export class BaseRouter<T> {
     }
 
     init(router: Router) {
-        router.post("/", this.createHandler);
-        router.get ("/", this.listHandler);
-        router.put ("/:id", this.updateHandler);
-        router.get ("/:id", this.getHandler);
-        router.delete("/:id", this.deleteHandler);
+        router.post("/", this.createHandler.bind(this));
+        router.get ("/", this.listHandler.bind(this));
+        router.put ("/:id", this.updateHandler.bind(this));
+        router.get ("/:id", this.getHandler.bind(this));
+        router.delete("/:id", this.deleteHandler.bind(this));
         return router;
     }
 

@@ -1,9 +1,10 @@
 import {BaseMongoRepo} from "./BaseMongoRepo";
 import {Order} from "../models";
 import {model, Schema} from "mongoose";
+import {ObjectId} from "bson";
 
 export const OrderSchema = new Schema({
-    id: {type: String, auto: true },
+    id: {type: String,  default: function() { return new ObjectId() }  },
 }, { strict: false});
 const MongoCoOp = model('Orders', OrderSchema);
 

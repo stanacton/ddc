@@ -25,7 +25,7 @@ export default class RepoFactory {
 
                 repos.orderRepo = new OrderRepo();
                 repos.coopRepo = new CoOpRepo();
-                repos.crops = new CropsRepo();
+                repos.cropsRepo = new CropsRepo();
                 repos.participantRepo = new ParticipantRepo();
 
                 resolve(repos);

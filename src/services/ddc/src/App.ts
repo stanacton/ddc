@@ -16,14 +16,14 @@ class App  {
         App.setupExpress(this.app);
     }
 
-    private static setupExpress(app: express.Application) {
+    private static async setupExpress(app: express.Application) {
         app.use(logger('dev'));
         app.use(express.json());
         app.use(express.urlencoded({ extended: false }));
         app.use(cookieParser());
         app.use(express.static(path.join(__dirname, 'public')));
 
-        const services = this.services();
+        const services = await this.services();
 
         app.use('/api/co-ops', OrderRouter.router(services.coOpSvc));
         app.use('/api/crops', OrderRouter.router(services.cropsSvc));
@@ -31,9 +31,9 @@ class App  {
         app.use('/api/participants', OrderRouter.router(services.participantSvc));
     }
 
-    static services() {
+    static async services() {
         const mongoConfig = config.get("MongoConfig") as MongoConfig;
-        const repos = RepoFactory.build(mongoConfig);
+        const repos = await RepoFactory.build(mongoConfig);
 
         const orderSvc = new OrderSvc(repos.orderRepo);
         const participantSvc = new ParticipantSvc(repos.participantRepo);

@@ -26,14 +26,17 @@ export abstract class BaseMongoRepo<T> implements Repo<T> {
 
     async get(id: string): Promise<T> {
         const item = await this.model.findOne({id: id});
-        return this.toType(item);
+        if (!item) {
+            throw new AppResponse(AppStatus.NotFound);
+        }
+        return this.toType(item.toObject());
     }
 
     async list(): Promise<T[]> {
         const items = await this.model.find();
 
         if (items) {
-            return items.map(this.toType) as T[];
+            return items.map((doc: Document) => { return this.toType(doc.toObject()) });
         } else {
             return [];
         }
@@ -43,6 +46,6 @@ export abstract class BaseMongoRepo<T> implements Repo<T> {
         const doc = new this.model(item);
         await this.model.updateOne({ id: id }, doc);
 
-        return this.toType(doc);
+        return this.toType(doc.toObject());
     }
 }
